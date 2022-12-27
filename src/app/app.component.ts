@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 
 export class AppComponent implements OnInit {
-  public employees: Employee[] ;
+  public employees: Employee[] = [];
 
   constructor(private employeeService: EmployeeService){}
 
