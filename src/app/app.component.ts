@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 
 export class AppComponent implements OnInit {
-  public employees!: Employee[] ;
+  public employees: Employee[] = [] ;
   public editEmployee!: Employee | null ;
   public deleteEmployee!: Employee | null ;
 
@@ -92,6 +92,27 @@ export class AppComponent implements OnInit {
       this.getEmployees();
     }
     });
+
+  }
+
+  public searchEmployeesByKeyword(key: string): void {
+    const employees: Employee[] = [];
+
+    for(const employee of this.employees) {
+      if( 
+        employee.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+       || employee.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
+       || employee.jobTitle.toLowerCase().indexOf(key.toLowerCase()) !== -1
+       || employee.phone.toLowerCase().indexOf(key.toLowerCase()) !== -1    
+       ) {
+        employees.push(employee)
+      }
+    }
+    
+    if(employees.length == 0 || !key)
+      this.getEmployees()
+    else
+      this.employees = employees
 
   }
 

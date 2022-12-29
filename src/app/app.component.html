@@ -15,10 +15,13 @@
       <input
         class="form-control me-2"
         type="search"
-        placeholder="Search"
+        (ngModelChange)="searchEmployeesByKeyword(key.value)"
+        ngModel
+        #key="ngModel"
+        name="key"
+        placeholder="Enter a keyword"
         aria-label="Search"
       />
-      <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
   </div>
 </nav>
@@ -384,7 +387,7 @@
 </div>
 
 <!-- Notification for no employees -->
-<div *ngIf="employees.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+<div *ngIf="employees?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
   <div class="alert alert-secondary" role="alert">
     <h4 class="alert-heading">NO EMPLOYEES!</h4>
     <p>No Employees were found.</p>
