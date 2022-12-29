@@ -11,9 +11,9 @@ import { NgForm } from '@angular/forms';
 })
 
 export class AppComponent implements OnInit {
-  public employees: Employee[]  = [];
-  public editEmployee: Employee | null = null ;
-  public deleteEmployee: Employee | null = null;
+  public employees!: Employee[]  ;
+  public editEmployee!: Employee  ;
+  public deleteEmployee!: Employee ;
 
   // Injecting the EmployeeService into the AppComponent class.
   constructor(private employeeService: EmployeeService){}
@@ -76,8 +76,8 @@ export class AppComponent implements OnInit {
     
   }
 
-  public onDeleteEmloyee(employeeId: number| undefined ): void{
-    if(typeof employeeId === 'number'){
+  public onDeleteEmloyee(employeeId: number ): void{
+    
     this.employeeService.deleteEmployee(employeeId)
     .subscribe({
       next:
@@ -93,9 +93,6 @@ export class AppComponent implements OnInit {
     }
     });
 
-    } else {
-      console.log("Something went wrong { The given id is not even a number }")
-    }
   }
 
   public onOpenModal(employee: Employee | null , mode: string): void {
@@ -109,11 +106,11 @@ export class AppComponent implements OnInit {
       button.setAttribute('data-target', '#addEmployeeModal')
     }
     else if (mode === 'edit') {
-      this.editEmployee = employee;
+      this.editEmployee != employee;
       button.setAttribute('data-target', '#updateEmployeeModal')
     }
     else if (mode === 'delete') {
-      this.deleteEmployee = employee;
+      this.deleteEmployee != employee;
       button.setAttribute('data-target', '#deleteEmployeeModal')
     }
 
