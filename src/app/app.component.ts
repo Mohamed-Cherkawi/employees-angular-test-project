@@ -11,9 +11,9 @@ import { NgForm } from '@angular/forms';
 })
 
 export class AppComponent implements OnInit {
-  public employees!: Employee[]  ;
-  public editEmployee!: Employee  ;
-  public deleteEmployee!: Employee ;
+  public employees!: Employee[] ;
+  public editEmployee!: Employee | null ;
+  public deleteEmployee!: Employee | null ;
 
   // Injecting the EmployeeService into the AppComponent class.
   constructor(private employeeService: EmployeeService){}
@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
     
   }
 
-  public onDeleteEmloyee(employeeId: number ): void{
+  public onDeleteEmloyee(employeeId: number  ): void{
     
     this.employeeService.deleteEmployee(employeeId)
     .subscribe({
@@ -96,6 +96,7 @@ export class AppComponent implements OnInit {
   }
 
   public onOpenModal(employee: Employee | null , mode: string): void {
+
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
     button.type = 'button';
@@ -106,11 +107,11 @@ export class AppComponent implements OnInit {
       button.setAttribute('data-target', '#addEmployeeModal')
     }
     else if (mode === 'edit') {
-      this.editEmployee != employee;
+      this.editEmployee = employee;
       button.setAttribute('data-target', '#updateEmployeeModal')
     }
     else if (mode === 'delete') {
-      this.deleteEmployee != employee;
+      this.deleteEmployee = employee;
       button.setAttribute('data-target', '#deleteEmployeeModal')
     }
 

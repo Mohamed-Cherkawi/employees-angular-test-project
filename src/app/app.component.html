@@ -37,17 +37,17 @@
             /></a>
           </div>
           <div class="col-6 card-title align-self-center mb-0">
-            <h5>{{ employee?.name }}</h5>
-            <p class="m-0">{{ employee?.jobTitle }}</p>
+            <h5>{{ employee.name }}</h5>
+            <p class="m-0">{{ employee.jobTitle }}</p>
           </div>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
             <i class="fa fa-envelope float-right"></i>Email :
-            <a href="#">{{ employee?.email }}</a>
+            <a href="#">{{ employee.email }}</a>
           </li>
           <li class="list-group-item">
-            <i class="fa fa-phone float-right"></i>Phone : {{ employee?.phone }}
+            <i class="fa fa-phone float-right"></i>Phone : {{ employee.phone }}
           </li>
         </ul>
         <div class="card-body">
@@ -231,7 +231,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="updateEmployeeModalLabel">
-          Edit Employee {{ editEmployee.name }}
+          Edit Employee {{ editEmployee?.name }}
         </h5>
         <button
           type="button"
@@ -248,7 +248,7 @@
             <label for="name">Name</label>
             <input
               type="text"
-              ngModel="{{ editEmployee.name }}"
+              ngModel="{{ editEmployee?.name }}"
               name="name"
               class="form-control"
               id="name"
@@ -258,7 +258,7 @@
           </div>
           <input
             type="hidden"
-            ngModel="{{ editEmployee.id }}"
+            ngModel="{{ editEmployee?.id }}"
             name="id"
             class="form-control"
             id="id"
@@ -266,7 +266,7 @@
           />
           <input
             type="hidden"
-            ngModel="{{ editEmployee.employeeCode }}"
+            ngModel="{{ editEmployee?.employeeCode }}"
             name="userCode"
             class="form-control"
             id="userCode"
@@ -276,7 +276,7 @@
             <label for="email">Email Address</label>
             <input
               type="email"
-              ngModel="{{ editEmployee.email }}"
+              ngModel="{{ editEmployee?.email }}"
               name="email"
               class="form-control"
               id="email"
@@ -287,7 +287,7 @@
             <label for="phone">Job title</label>
             <input
               type="text"
-              ngModel="{{ editEmployee.jobTitle }}"
+              ngModel="{{ editEmployee?.jobTitle }}"
               name="jobTitle"
               class="form-control"
               id="jobTitle"
@@ -298,7 +298,7 @@
             <label for="phone">Phone</label>
             <input
               type="text"
-              ngModel="{{ editEmployee.phone }}"
+              ngModel="{{ editEmployee?.phone }}"
               name="phone"
               class="form-control"
               id="phone"
@@ -310,7 +310,7 @@
             <label for="phone">Image URL</label>
             <input
               type="text"
-              ngModel="{{ editEmployee.imageUrl }}"
+              ngModel="{{ editEmployee?.imageUrl }}"
               name="imageUrl"
               class="form-control"
               id="imageUrl"
@@ -364,14 +364,14 @@
       </div>
       <div class="modal-body">
         <p>
-          Are you sure you want to delete employee {{ deleteEmployee.name }}?
+          Are you sure you want to delete employee {{ deleteEmployee?.name }}?
         </p>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">
             No
           </button>
           <button
-            (click)="onDeleteEmloyee(deleteEmployee.id)"
+            (click)="onDeleteEmloyee(deleteEmployee!.id)"
             class="btn btn-danger"
             data-dismiss="modal"
           >
@@ -384,7 +384,7 @@
 </div>
 
 <!-- Notification for no employees -->
-<div *ngIf="employees?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+<div *ngIf="employees.length == 0" class="col-lg-12 col-md-12 col-xl-12">
   <div class="alert alert-secondary" role="alert">
     <h4 class="alert-heading">NO EMPLOYEES!</h4>
     <p>No Employees were found.</p>
